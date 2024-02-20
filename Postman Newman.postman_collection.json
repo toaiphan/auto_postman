@@ -1,0 +1,93 @@
+{
+	"info": {
+		"_postman_id": "1b3e6bf5-0729-4a58-81c5-0802b54df5c4",
+		"name": "Postman Newman",
+		"description": "Newman CLI : cài node js, cài newman bằng câu lệnh npm install -g newman\n\n[https://www.npmjs.com/package/newman#getting-started](https://www.npmjs.com/package/newman#getting-started)\n\nNew man chưa đc tích hợp vào postman. để chạy bằng newman chuột phải vào api share via api , copy link . Xong mở terminal gõ newman run linkvuacopy/ chạy từ file json lệnh: newman run a.postman_collection.json ( nhớ cd vào folder chưa file json)\n\n- Chạy với môi trường ( chưa làm đc với link/ đang lấy enviroment từ file)  \n    C:\\\\Users\\\\toaipa\\\\Desktop>newman run [https://api.postman.com/collections/24846945-1b3e6bf5-0729-4a58-81c5-0802b54df5c4?access_key=PMAT-01HNMBVPJC9BXWKKKRGH6GQ615](https://api.postman.com/collections/24846945-1b3e6bf5-0729-4a58-81c5-0802b54df5c4?access_key=PMAT-01HNMBVPJC9BXWKKKRGH6GQ615) -e Production.postman_environment.json\n- Các option : [https://www.npmjs.com/package/newman](https://www.npmjs.com/package/newman)\n- một số biển ẩn sẽ ko ăn đc ( cần mở ẩn)\n    \n\n# Tạo report HTML\n\nCài thư viện : StartFragment\n\n```\nnpm install -g newman-reporter-htmlextra\n\n ```\n\nEndFragment\n\nCâu lệnh chạy có report html :\n\n- newman run [https://api.postman.com/collections/24846945-1b3e6bf5-0729-4a58-81c5-0802b54df5c4?access_key=PMAT-01HNMBVPJC9BXWKKKRGH6GQ615](https://api.postman.com/collections/24846945-1b3e6bf5-0729-4a58-81c5-0802b54df5c4?access_key=PMAT-01HNMBVPJC9BXWKKKRGH6GQ615) -e Production.postman_environment.json -r htmlextra\n- Sau khi chạy report sẽ có trong folder m đang đứng\n- Các options khác với report xem tại :[https://www.npmjs.com/package/newman-reporter-htmlextra](https://www.npmjs.com/package/newman-reporter-htmlextra)\n- Ngoài ra có thể tại report junit [https://github.com/postmanlabs/newman#junitxml-reporter](https://github.com/postmanlabs/newman#junitxml-reporter)\n    \n\n# Phần jenkins làm tương tự upcode\n\n# Datadriven: tìm hiểu thêm sau\n\nGIT : vẫn phải export ra file json để push lên repo, khi pull về lại phải import lại\n\nTeam workspaces : là chung project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24846945",
+		"_collection_link": "https://galactic-star-4828.postman.co/workspace/My-Workspace~83015632-f6f4-4c70-8b29-7f4a6688ef15/collection/24846945-1b3e6bf5-0729-4a58-81c5-0802b54df5c4?action=share&source=collection_link&creator=24846945"
+	},
+	"item": [
+		{
+			"name": "1.Get all projects Copy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{user_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/rest/v2/projects",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"rest",
+						"v2",
+						"projects"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2.Get a project Copy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{user_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/rest/v2/projects/2294803620",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"rest",
+						"v2",
+						"projects",
+						"2294803620"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Status code is 200\", function () {",
+					"    pm.response.to.have.status(200);",
+					"});"
+				]
+			}
+		}
+	]
+}
